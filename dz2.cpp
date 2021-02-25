@@ -2,11 +2,10 @@
 
 using namespace std;
 
-//Перечисления возможных символдов
 enum SYMBOL{X,O};    
 typedef enum SYMBOL Sym;
  
- //Структура "Поле для игры в крестики-нолики"
+
 typedef struct poleDlyaIgry {
 	int stroka;
 	int stolbec;
@@ -14,7 +13,7 @@ typedef struct poleDlyaIgry {
 } Pole;
 
 
-// Структура с битовыми флагами
+
 typedef struct dataSym{
 	char vSym;
 	int is_char : 1;
@@ -28,9 +27,8 @@ typedef struct dataSym{
 
 int main(int argc, char *argv[]) 
 {
-	int i, j; //Для счетчиков цикла
+	int i, j;
 	float f;
-	char v = 49;   // по таблице ASCII это цифра один
 	Pole kletka;	
 	kletka.stroka;
 	kletka.stolbec;
@@ -39,9 +37,10 @@ int main(int argc, char *argv[])
 	union vs1{		
 		int cyfra;
 		char simvol;
+		char cherta;
 	};
 	
-	DS simvol, cyfra;
+	DS simvol, cyfra, cgerta;
 	simvol.vSym = 'X';
 	simvol.is_char = 1;
 	simvol.is_int = 0;
@@ -56,25 +55,28 @@ int main(int argc, char *argv[])
 	cyfra.is_low = 0;
 	
 	
-// Инициализация массива  числами типа char от 1 до 9.	
-	printf("Igrovoe pole igry v krestiki-noliki!\n\n");
+	
+	
+
+	puts("Igrovoe pole igry v krestiki-noliki!\n\n");
 	char playpole[3][3];
 	for(i=0;i<3;i++){
 		for(j=0;j<3;j++){
+			playpole[i][j] = 32;
 			if ((j != 2)&(i != 2))
-				cout << (playpole[i][j] = v) << "_|_";	
+				cout << playpole[i][j] << "_|";	
+			else if ((j == 2)&(i != 2))
+				cout << playpole[i][j] << "_";	
 			else if ((j != 2)&(i == 2))
-				cout << (playpole[i][j] = v) << " | ";				
+				cout << (playpole[i][j]) << " |";				
 			else
-				cout << (playpole[i][j] = v);
-			v++;
+				cout << (playpole[i][j]);
 		}
 		cout << endl;
 	}
-	cout << endl;
+	
 	
 
 	
 	return 0;
 }
-
